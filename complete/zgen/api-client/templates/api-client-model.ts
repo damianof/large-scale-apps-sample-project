@@ -1,4 +1,4 @@
-import { I{{ entityName }} } from '@/models/{{ toLowerCase entityPlural }}/I{{ entityName }}'
+import { I{{ entityName }} } from '@/models/{{ lowerCase entityPlural }}/I{{ entityName }}'
 import { httpClient, IHttpClientGetParameters } from '@/models/http/IHttpClient'
 
 export interface I{{ entityPlural }}ApiClientUrls {

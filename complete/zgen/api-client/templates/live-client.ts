@@ -5,7 +5,7 @@ import {
 } from '@/models/api-client/{{ lowerCase entityPlural }}/I{{ entityPlural }}ApiClient'
 
 const urls: I{{ entityPlural }}ApiClientUrls = {
-	fetch{{ entityPlural }}: '/static/data/{{ lowerCase entityPlural }}.json'
+	fetch{{ entityPlural }}: '/path/to/your/real/api/and-point'
 }
 
 const {{ lowerCase entityPlural }}ApiClient: I{{ entityPlural }}ApiClient = new {{ entityPlural }}ApiClient(urls)

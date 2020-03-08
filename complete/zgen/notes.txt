@@ -1,1 +1,6 @@
-https://www.nicoespeon.com/en/2015/11/plop-micro-generator-boilerplate-yeoman-alternative/
+# https://www.nicoespeon.com/en/2015/11/plop-micro-generator-boilerplate-yeoman-alternative/
+
+# shortcuts in package.json script section
+
+# i.e. run with:
+npm run stub-api-client
