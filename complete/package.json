@@ -7,7 +7,8 @@
 		"build": "export VUE_APP_API_CLIENT=live; vue-cli-service build --mode production",
 		"build-mock": "export VUE_APP_API_CLIENT=mock; vue-cli-service build --mode production",
 		"test:unit": "vue-cli-service test:unit",
-		"lint": "vue-cli-service lint"
+		"lint": "vue-cli-service lint",
+		"stub-api-client": "plop --plopfile ./zgen/api-client/api-client-plop.js"
 	},
 	"dependencies": {
 		"axios": "^0.19.2",
@@ -35,6 +36,7 @@
 		"eslint": "^6.7.2",
 		"eslint-plugin-vue": "^6.1.2",
 		"node-sass": "^4.12.0",
+		"plop": "^2.6.0",
 		"sass-loader": "^8.0.2",
 		"sinon": "^9.0.0",
 		"typescript": "~3.7.5",
