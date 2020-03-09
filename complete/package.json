@@ -8,7 +8,8 @@
 		"build-mock": "export VUE_APP_API_CLIENT=mock; vue-cli-service build --mode production",
 		"test:unit": "vue-cli-service test:unit",
 		"lint": "vue-cli-service lint",
-		"stub-api-client": "plop --plopfile ./zgen/api-client/api-client-plop.js"
+		"stub-api-client": "plop --plopfile ./zgen/api-client/api-client-plop.js",
+		"stub-store-module": "plop --plopfile ./zgen/state/state-plop.js"
 	},
 	"dependencies": {
 		"axios": "^0.19.2",
