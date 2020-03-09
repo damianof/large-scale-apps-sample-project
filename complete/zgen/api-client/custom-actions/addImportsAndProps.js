@@ -1,5 +1,4 @@
 const fs = require('fs');
-const path = require('path');
 const Handlebars = require('handlebars');
 
 const addImportsAndProps = (data, config, plop) => {

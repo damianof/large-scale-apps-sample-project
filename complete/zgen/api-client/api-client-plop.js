@@ -39,12 +39,12 @@ module.exports = (plop) => {
 		// create entity models
 		{
             type: 'add',
-            path: `${ modelsBasePath }/{{ lowerCase entityPlural }}/I{{ entityName }}.ts`,
+            path: `${ modelsBasePath }/{{ kebabCase entityPlural }}/I{{ entityName }}.ts`,
             templateFile: 'templates/entity-model.ts',
             force: true
         }, {
             type: 'add',
-            path: `${ modelsBasePath }/api-client/{{ lowerCase entityPlural }}/I{{ entityPlural }}ApiClient.ts`,
+            path: `${ modelsBasePath }/api-client/{{ kebabCase entityPlural }}/I{{ entityPlural }}ApiClient.ts`,
             templateFile: 'templates/api-client-model.ts',
             force: true
         },
@@ -55,19 +55,19 @@ module.exports = (plop) => {
             placeHolder: 'GEN-IMPORTS',
 			addCommaPrefix: false,
 			tabs: '',
-		    codeTemplate: `import { I{{ entityPlural }}ApiClient } from '@/models/api-client/{{ lowerCase entityPlural }}/I{{ entityPlural }}ApiClient'`
+		    codeTemplate: `import { I{{ entityPlural }}ApiClient } from '@/models/api-client/{{ kebabCase entityPlural }}/I{{ entityPlural }}ApiClient'`
         }, {
 			type: 'addImportsAndProps',
             fullFilePath: `${ modelsBasePath }/api-client/IApiClient.ts`,
             placeHolder: 'GEN-PROPERTIES',
 			addCommaPrefix: true,
 			tabs: '\t',
-		    codeTemplate: `{{ lowerCase entityPlural }}: I{{ entityPlural }}ApiClient`
+		    codeTemplate: `{{ camelCase entityPlural }}: I{{ entityPlural }}ApiClient`
         }, 
 		// mock instance
 		{
             type: 'add',
-            path: `${ apiClientBasePath }/mock/{{ lowerCase entityPlural }}/index.ts`,
+            path: `${ apiClientBasePath }/mock/{{ kebabCase entityPlural }}/index.ts`,
             templateFile: 'templates/mock-client.ts',
             force: true
         }, {
@@ -76,7 +76,7 @@ module.exports = (plop) => {
             placeHolder: 'GEN-IMPORTS',
 			addCommaPrefix: false,
 			tabs: '',
-		    codeTemplate: `import {{ camelCase entityPlural }}ApiClient from '@/api-client/mock/{{ lowerCase entityPlural }}'`
+		    codeTemplate: `import {{ camelCase entityPlural }}ApiClient from '@/api-client/mock/{{ kebabCase entityPlural }}'`
         }, {
 			type: 'addImportsAndProps',
             fullFilePath: `${ apiClientBasePath }/mock/index.ts`,
@@ -88,7 +88,7 @@ module.exports = (plop) => {
 		// live instance
 		{
             type: 'add',
-            path: `${ apiClientBasePath }/live/{{ lowerCase entityPlural }}/index.ts`,
+            path: `${ apiClientBasePath }/live/{{ kebabCase entityPlural }}/index.ts`,
             templateFile: 'templates/live-client.ts',
             force: true
         }, {
@@ -97,7 +97,7 @@ module.exports = (plop) => {
             placeHolder: 'GEN-IMPORTS',
 			addCommaPrefix: false,
 			tabs: '',
-		    codeTemplate: `import {{ camelCase entityPlural }}ApiClient from '@/api-client/live/{{ lowerCase entityPlural }}'`
+		    codeTemplate: `import {{ camelCase entityPlural }}ApiClient from '@/api-client/live/{{ kebabCase entityPlural }}'`
         }, {
 			type: 'addImportsAndProps',
             fullFilePath: `${ apiClientBasePath }/live/index.ts`,
