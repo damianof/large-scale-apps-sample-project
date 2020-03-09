@@ -1,5 +1,5 @@
 const path = require('path');
-const addImportsAndProps = require('./custom-actions/addImportsAndProps.js');
+const addImportsAndProps = require('../custom-actions/addImportsAndProps.js');
 
 const modelsBasePath = path.join(__dirname, '../../src/models');
 const apiClientBasePath = path.join(__dirname, '../../src/api-client');

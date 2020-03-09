@@ -1,6 +1,14 @@
 const fs = require('fs');
 const Handlebars = require('handlebars');
 
+const escapeRegexSpecialChars = (text) => {
+	// $& means the whole matched string
+	return (text || '')
+		.replace(/[.*+?^${}()|[\]\\']/g, '\\$&')
+		.replace(/\s+/gi, '\\s');
+	//return (text || '').replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};
+
 const addImportsAndProps = (data, config, plop) => {
 	const {
 		fullFilePath,
@@ -13,21 +21,6 @@ const addImportsAndProps = (data, config, plop) => {
 	// console.log('data', data);
 	// console.log('config', config);
 
-	/*
-	data { 
-		entityName: 'Person', 
-		entityPlural: 'People'
-	}
-	config { 
-		type: 'addImportsAndProps',
-		fullFilePath: '../../../src/api-client/mock/index.ts',
-		placeHolder: 'GEN-IMPORTS',
-		codeTemplate:
-		'import {{ camelCase entityPlural }}ApiClient from \'@/api-client/mock/{{ lowerCase entityPlural }}\'',
-		force: false
-	}
-	*/
-
 	// transform templat with handlebars
 	const handlebarsTempl = Handlebars.compile(codeTemplate);
 	const codeStatement = handlebarsTempl(data);
@@ -37,11 +30,18 @@ const addImportsAndProps = (data, config, plop) => {
 
 		const fileContent = fs.readFileSync(fullFilePath, 'utf8');
 		//console.log('fileContent', fileContent);
+		//console.log('_______________');
+		//console.log('codeStatement', codeStatement);
 
-		//const rx = eval('/(' + codeStatement + '+/gi');
-		//const exists = rx.match(fileContent);
-		const exists = fileContent.toLowerCase().indexOf(codeStatement.toLowerCase()) > -1;
-		//console.log('exists', exists);
+		const rxExpression = '(' + escapeRegexSpecialChars(codeStatement) + ')$';
+		//console.log('rxExpression', rxExpression);
+		const rx = new RegExp(rxExpression, 'gim');
+		//console.log('rx.toString()', rx.toString());
+		const matches = fileContent.match(rx);
+		//const exists = fileContent.toLowerCase().indexOf(codeStatement.toLowerCase()) > -1;
+		const exists = (matches || []).length > 0;
+		// console.log('matches', matches);
+		// console.log('exists', exists);
 
 		if (!exists) {
 			//console.log('----- replace and write file');
@@ -55,7 +55,7 @@ const addImportsAndProps = (data, config, plop) => {
 				replacement = `${ tabs }${ codeStatement }`;
 			}
 			const updatedFileContent = fileContent.replace(searchPattern, `${ placeHolder }\n${ replacement }`);
-			console.log('updatedFileContent', updatedFileContent);
+			//console.log('updatedFileContent', updatedFileContent);
 			fs.writeFileSync(fullFilePath, updatedFileContent);
 		}
 	}
