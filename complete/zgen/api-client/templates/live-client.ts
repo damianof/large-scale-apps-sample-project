@@ -2,12 +2,12 @@ import {
     I{{ entityPlural }}ApiClientUrls, 
     I{{ entityPlural }}ApiClient, 
     {{ entityPlural }}ApiClient 
-} from '@/models/api-client/{{ lowerCase entityPlural }}/I{{ entityPlural }}ApiClient'
+} from '@/models/api-client/{{ kebabCase entityPlural }}/I{{ entityPlural }}ApiClient'
 
 const urls: I{{ entityPlural }}ApiClientUrls = {
 	fetch{{ entityPlural }}: '/path/to/your/real/api/and-point'
 }
 
-const {{ lowerCase entityPlural }}ApiClient: I{{ entityPlural }}ApiClient = new {{ entityPlural }}ApiClient(urls)
+const {{ camelCase entityPlural }}ApiClient: I{{ entityPlural }}ApiClient = new {{ entityPlural }}ApiClient(urls)
 
-export default {{ lowerCase entityPlural }}ApiClient
+export default {{ camelCase entityPlural }}ApiClient
