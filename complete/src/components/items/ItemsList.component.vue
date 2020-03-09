@@ -14,6 +14,7 @@
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator'
 	import { IItem } from '@/models/items/IItem'
+	import { MutationType } from '@/models/store/mutation-types/'
 	import { Loader } from '@/components/shared'
 	import ItemComponent from '@/components/items/children/Item.component.vue'
 
@@ -31,7 +32,7 @@
 		}
 
 		onItemClick(item: IItem) {
-			this.$store.dispatch('selectingItem', {
+			this.$store.dispatch(`itemsState/${ MutationType.items.selectingItem }`, {
 				id: item.id, 
 				selected: !item.selected
 			})
