@@ -13,8 +13,9 @@
 
 <script lang="ts">
     import { Component, Prop, Vue } from 'vue-property-decorator'
+	import { mapState } from 'vuex'
 	import { IItem } from '@/models/items/IItem'
-	import { MutationType } from '@/models/store/mutation-types/'
+	import { MutationType, IRootState, RootStore, IItemsState } from '@/models/store'
 	import { Loader } from '@/components/shared'
 	import ItemComponent from '@/components/items/children/Item.component.vue'
 
@@ -22,13 +23,19 @@
 		components: {
 			Loader,
 			ItemComponent
+		},
+		computed: {
+			...mapState<IRootState>({
+				itemsState: (store: RootStore<IRootState>) => store.itemsState
+			})
 		}
 	})
     export default class ItemsListComponent extends Vue {
 		@Prop() items!: IItem[]
 
+		private itemsState!: IItemsState // this is assigned by mapState
 		private get loading(): boolean {
-			return this.$store.state.loading
+			return this.itemsState.loading
 		}
 
 		onItemClick(item: IItem) {
