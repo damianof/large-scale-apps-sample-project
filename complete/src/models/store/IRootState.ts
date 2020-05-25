@@ -4,6 +4,13 @@ import {
 	IItemsState, initialItemsState
 } from '@/models/store/'
 
+export interface IStoreModuleNames {
+	itemsState: string
+}
+export const StoreModuleNames: IStoreModuleNames = {
+	itemsState: 'itemsState'
+}
+
 export interface IRootState {
 	loading: boolean
 }

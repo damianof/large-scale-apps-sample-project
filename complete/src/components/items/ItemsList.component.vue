@@ -15,7 +15,7 @@
     import { Component, Prop, Vue } from 'vue-property-decorator'
 	import { mapState } from 'vuex'
 	import { IItem } from '@/models/items/IItem'
-	import { MutationType, IRootState, RootStore, IItemsState } from '@/models/store'
+	import { MutationType, IRootState, RootStore, IItemsState, StoreModuleNames } from '@/models/store'
 	import { Loader } from '@/components/shared'
 	import ItemComponent from '@/components/items/children/Item.component.vue'
 
@@ -38,8 +38,15 @@
 			return this.itemsState.loading
 		}
 
+		private dispatch<T>(mutationType: string, params?: T) {
+			this.$store.dispatch(`${ StoreModuleNames.itemsState }/${ mutationType }`, params)
+		}
+
 		onItemClick(item: IItem) {
-			this.$store.dispatch(`itemsState/${ MutationType.items.selectingItem }`, {
+			this.dispatch<{
+				id: number, 
+				selected: boolean
+			}>(MutationType.items.selectingItem, {
 				id: item.id, 
 				selected: !item.selected
 			})
