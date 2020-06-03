@@ -1,14 +1,14 @@
 
 export interface IItemsMutationType {
-	loadItems: string
-	loadingItems: string
-	loadedItems: string
-	selectingItem: string
+	readonly loadItems: string
+	readonly loadingItems: string
+	readonly loadedItems: string
+	readonly selectingItem: string
 }
 
-export const ItemsMutationType: IItemsMutationType = {
+export const ItemsMutationType: IItemsMutationType = Object.freeze({
 	loadItems: 'loadItems',
 	loadingItems: 'loadingItems',
 	loadedItems: 'loadedItems',
 	selectingItem: 'selectingItem',
-}
+})
