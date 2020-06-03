@@ -5,11 +5,11 @@ import {
 } from '@/models/store/'
 
 export interface IStoreModuleNames {
-	itemsState: string
+	readonly itemsState: string
 }
-export const StoreModuleNames: IStoreModuleNames = {
+export const StoreModuleNames: IStoreModuleNames = Object.freeze({
 	itemsState: 'itemsState'
-}
+})
 
 export interface IRootState {
 	loading: boolean
