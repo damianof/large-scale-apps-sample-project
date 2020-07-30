@@ -7,9 +7,11 @@
 		"build": "export VUE_APP_API_CLIENT=live; vue-cli-service build --mode production",
 		"build-mock": "export VUE_APP_API_CLIENT=mock; vue-cli-service build --mode production",
 		"test:unit": "vue-cli-service test:unit",
+    "test": "npm run test:unit",
 		"lint": "vue-cli-service lint",
 		"stub-api-client": "plop --plopfile ./zgen/api-client/api-client-plop.js",
-		"stub-store-module": "plop --plopfile ./zgen/state/state-plop.js"
+    "stub-store-module": "plop --plopfile ./zgen/state/state-plop.js",
+    "pretty": "prettier --write '**/*.{ts,vue}'"
 	},
 	"dependencies": {
 		"axios": "^0.19.2",

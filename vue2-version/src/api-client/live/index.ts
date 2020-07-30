@@ -3,8 +3,8 @@ import ItemsApiClient from '@/api-client/live/items'
 // GEN-IMPORTS
 
 const apiLiveClient: IApiClient = {
-	items: ItemsApiClient
-	// GEN-PROPERTIES
+  items: ItemsApiClient
+  // GEN-PROPERTIES
 }
 
 export default apiLiveClient
