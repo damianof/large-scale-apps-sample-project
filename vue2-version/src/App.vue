@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <h1>{{ $t('welcome') }}</h1>
+    <LocaleToolbar :items="availableLocales" />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -8,6 +9,24 @@
     <router-view />
   </div>
 </template>
+
+<script lang="ts">
+  import { Component, Prop, Vue } from 'vue-property-decorator'
+  import { availableLocales } from '@/plugins/i18n-wrapper'
+  import { IAvailableLocaleInfo } from '@/models/localization/IAvailableLocaleInfo'
+  import LocaleToolbar from '@/components/locale-toolbar/LocaleToolbar.component.vue'
+
+  @Component({
+    components: {
+      LocaleToolbar
+    }
+  })
+  export default class App extends Vue {
+    private get availableLocales(): IAvailableLocaleInfo[] {
+      return availableLocales
+    }
+  }
+</script>
 
 <style lang="scss">
 #app {
