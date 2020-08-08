@@ -8,6 +8,7 @@ import {
   initialRootState
 } from '@/models/store'
 // GEN-IMPORTS
+import { localesState } from '@/store/locales/locales-module'
 import { itemsState } from '@/store/items/items-module'
 
 Vue.use(Vuex)
@@ -23,6 +24,7 @@ const storeOptions: StoreOptions<IRootState> = {
 
   modules: {
     // GEN-MODULES
+    localesState,
     itemsState
   }
 }

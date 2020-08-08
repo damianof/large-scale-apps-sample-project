@@ -6,7 +6,7 @@ module.exports = {
   },
   productionSourceMap: true,
   outputDir: 'dist',
-  /* publicPath is used by npm run build to prefix references for script/css files */
+  /* publicPath is used when we execute "npm run build" to prefix references for script/css files */
   publicPath: './',
   /* chainWebpack/configureWebpack so that npm run build does not produce hashed file names under dist/ folder */
   chainWebpack: (config) => {

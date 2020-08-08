@@ -5,7 +5,7 @@ import {
 } from '@/models/api-client/items/IItemsApiClient'
 
 const urls: IItemsApiClientUrls = {
-	fetchItems: '/static/data/items.json'
+  fetchItems: '/static/data/items.json'
 }
 
 const itemsApiClient: IItemsApiClient = new ItemsApiClient(urls)

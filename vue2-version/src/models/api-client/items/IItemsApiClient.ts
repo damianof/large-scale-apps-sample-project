@@ -2,27 +2,27 @@ import { IItem } from '@/models/items/IItem'
 import { httpClient, IHttpClientGetParameters } from '@/models/http/IHttpClient'
 
 export interface IItemsApiClientUrls {
-	fetchItems: string
+  fetchItems: string
 }
 
 export interface IItemsApiClient {
-	urls: IItemsApiClientUrls
-    fetchItems: () => Promise<IItem[]>
+  urls: IItemsApiClientUrls
+  fetchItems: () => Promise<IItem[]>
 }
 
 export class ItemsApiClient implements IItemsApiClient {
-	urls: IItemsApiClientUrls
+  urls: IItemsApiClientUrls
 
-	constructor(urls: IItemsApiClientUrls) {
-		this.urls = urls
-	}
+  constructor(urls: IItemsApiClientUrls) {
+    this.urls = urls
+  }
 
-	fetchItems(): Promise<IItem[]> {
-		const getParameters: IHttpClientGetParameters = {
-			url: this.urls.fetchItems,
-			requiresToken: false
-		}
+  fetchItems(): Promise<IItem[]> {
+    const getParameters: IHttpClientGetParameters = {
+      url: this.urls.fetchItems,
+      requiresToken: false
+    }
 
-		return httpClient.get<IItem[]>(getParameters)
-	}
+    return httpClient.get<IItem[]>(getParameters)
+  }
 }
