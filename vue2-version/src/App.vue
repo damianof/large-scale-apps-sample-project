@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>{{ $t('welcome') }}</h1>
-    <LocaleToolbar :availableLocales="availableLocales" @clicked="onLocaleClicked" />
+    <LocaleSelector :availableLocales="availableLocales" @clicked="onLocaleClicked" />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -20,11 +20,11 @@ import {
   ILocalesState
 } from '@/models/store'
 import { IAvailableLocaleInfo } from '@/models/localization/IAvailableLocaleInfo'
-import LocaleToolbar from '@/components/locale-toolbar/LocaleToolbar.component.vue'
+import LocaleSelector from '@/components/locale-selector/LocaleSelector.component.vue'
 
 @Component({
   components: {
-    LocaleToolbar
+    LocaleSelector
   },
   computed: {
     ...mapState<IRootState>({

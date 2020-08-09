@@ -14,7 +14,7 @@
   import { IAvailableLocaleInfo } from '@/models/localization/IAvailableLocaleInfo'
 
 	@Component
-  export default class LocaleFlagButton extends Vue {
+  export default class LocaleFlagRadio extends Vue {
 		@Prop({ default: {} }) localeInfo!: IAvailableLocaleInfo
 
     private onClick() {

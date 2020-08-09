@@ -1,7 +1,7 @@
 <template>
-  <div class="locale-toolbar">
-    <div class="locale-switches">
-      <LocaleFlagButton
+  <div class="locale-selector">
+    <div class="locale-radio-group">
+      <LocaleFlagRadio
         v-for="(localeInfo, index) in availableLocales"
         :key="index"
         :localeInfo="localeInfo"
@@ -12,14 +12,14 @@
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator'
   import { IAvailableLocaleInfo } from '@/models/localization/IAvailableLocaleInfo'
-  import LocaleFlagButton from './LocaleFlagButton.component.vue'
+  import LocaleFlagRadio from './LocaleFlagRadio.component.vue'
 
 	@Component({
     components: {
-      LocaleFlagButton
+      LocaleFlagRadio
     }
   })
-  export default class LocaleToolbar extends Vue {
+  export default class LocaleSelector extends Vue {
 		@Prop({ default: () => [] }) availableLocales!: IAvailableLocaleInfo[]
 
     private onFlagClicked(clickedItem: IAvailableLocaleInfo) {
@@ -28,12 +28,12 @@
 	}
 </script>
 <style lang="scss">
-  .locale-toolbar {
+  .locale-selector {
     display: inline-grid;
     grid-template-rows: 20px 40px 20px;
     align-items: center;
 
-    .locale-switches {
+    .locale-radio-group {
       display: inline-flex;
       justify-content: center;
 
