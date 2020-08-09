@@ -5,7 +5,7 @@ import store from '@/store'
 import { i18n } from '@/plugins/i18n-wrapper'
 import FlagIconsScss from '@/plugins/flags-icons/'
 
-Vue.use(FlagIconsScss);
+Vue.use(FlagIconsScss)
 
 Vue.config.productionTip = false
 

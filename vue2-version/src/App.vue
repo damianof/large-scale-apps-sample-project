@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>{{ $t('welcome') }}</h1>
-    <LocaleToolbar :items="availableLocales" />
+    <LocaleToolbar :availableLocales="availableLocales" @clicked="onLocaleClicked" />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -11,21 +11,37 @@
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue } from 'vue-property-decorator'
-  import { availableLocales } from '@/plugins/i18n-wrapper'
-  import { IAvailableLocaleInfo } from '@/models/localization/IAvailableLocaleInfo'
-  import LocaleToolbar from '@/components/locale-toolbar/LocaleToolbar.component.vue'
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import { mapState } from 'vuex'
+import {
+  MutationType,
+  IRootState,
+  RootStore,
+  ILocalesState
+} from '@/models/store'
+import { IAvailableLocaleInfo } from '@/models/localization/IAvailableLocaleInfo'
+import LocaleToolbar from '@/components/locale-toolbar/LocaleToolbar.component.vue'
 
-  @Component({
-    components: {
-      LocaleToolbar
-    }
-  })
-  export default class App extends Vue {
-    private get availableLocales(): IAvailableLocaleInfo[] {
-      return availableLocales
-    }
+@Component({
+  components: {
+    LocaleToolbar
+  },
+  computed: {
+    ...mapState<IRootState>({
+      localesState: (store: RootStore<IRootState>) => store.localesState
+    })
   }
+})
+export default class App extends Vue {
+  private localesState!: ILocalesState // this is assigned by mapState
+  private get availableLocales(): IAvailableLocaleInfo[] {
+    return this.localesState.availableLocales
+  }
+
+  private onLocaleClicked(localeInfo: IAvailableLocaleInfo) {
+    this.$store.dispatch(`localesState/${ MutationType.locales.selectLocale }`, localeInfo)
+  }
+}
 </script>
 
 <style lang="scss">

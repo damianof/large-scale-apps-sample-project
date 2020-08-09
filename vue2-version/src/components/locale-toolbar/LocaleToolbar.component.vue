@@ -1,48 +1,29 @@
 <template>
   <div class="locale-toolbar">
-  <span>Switch Locale:</span>
-  <div class="locale-switches">
-    <label role="button"
-      v-for="(item, index) in items"
-      :key="index"
-      :class="`locale-radio ${ item.selected ? 'selected' : '' }`.trim()">
-      <i :class="`flag-icons ${ item.flag }`"></i>
-      <input type="radio" name="locale" :value="item.locale" class="icon-button" :checked="item.selected" @click="onItemClick(item)"/>
-    </label>
-  </div>
-  <span>{{ selectedLocaleMessage }}</span>
+    <div class="locale-switches">
+      <LocaleFlagButton
+        v-for="(localeInfo, index) in availableLocales"
+        :key="index"
+        :localeInfo="localeInfo"
+        @clicked="onFlagClicked"/>
+    </div>
   </div>
 </template>
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator'
-  import { i18n } from '@/plugins/i18n-wrapper'
   import { IAvailableLocaleInfo } from '@/models/localization/IAvailableLocaleInfo'
+  import LocaleFlagButton from './LocaleFlagButton.component.vue'
 
-	@Component
-  export default class ItemComponent extends Vue {
-		@Prop({ default: () => [] }) items!: IAvailableLocaleInfo[]
-
-		private get selectedLocaleMessage (): string {
-      const items: IAvailableLocaleInfo[] = this.items
-      const item = items.find((item) => item.selected)
-      if (item) {
-        return item.name
-      }
-      return ''
+	@Component({
+    components: {
+      LocaleFlagButton
     }
+  })
+  export default class LocaleToolbar extends Vue {
+		@Prop({ default: () => [] }) availableLocales!: IAvailableLocaleInfo[]
 
-    private onItemClick(clickedItem: IAvailableLocaleInfo) {
-      const items: IAvailableLocaleInfo[] = this.items
-      // loop through item and set only the clickedItem selected to true
-      items.forEach((item) => {
-        if (item.locale !== clickedItem.locale) {
-          item.selected = false
-        } else {
-          item.selected = true
-          // switch i18n selected locale
-          i18n.locale = item.locale
-        }
-      })
+    private onFlagClicked(clickedItem: IAvailableLocaleInfo) {
+      this.$emit('clicked', clickedItem)
     }
 	}
 </script>
@@ -62,7 +43,7 @@
         padding: 5px;
 
         &.selected {
-          outline: solid 1px red;
+          border-bottom: solid 5px #42b983;
         }
       }
 
