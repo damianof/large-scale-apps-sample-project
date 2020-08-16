@@ -6,8 +6,8 @@ The complete project is located under the ./complete folder here.
 https://github.com/damianof/large-scale-apps-my-vue2-project/
 
 ## New Vue 3 Book:
-### Book is here 
-https://github.com/damianof/large-scale-apps-my-vue3-project
+### New Vue 3 Book is here 
+https://leanpub.com/vue-typescript
 
 ### New Vue 3 Repository here:
-https://leanpub.com/vue-typescript
+https://github.com/damianof/large-scale-apps-my-vue3-project
